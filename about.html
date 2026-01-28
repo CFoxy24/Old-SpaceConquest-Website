@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+     <!--Head-->
+     <head id="app-head"></head>
+
+     <!--Header-->
+     <header id="app-header"></header>
+ 
+      <!-- Manually load style.css at very start to prevent flashbang on refresh:-->
+     <link rel="stylesheet" href="Scripts/style.css">
+
+    <!--Body-->
+    <div style="overflow: hidden;">
+        <body id="app-body">
+            <div id="AboutText" class="TXTContainer White" style="opacity: 0; height: 200px;"><p style="text-align: center; padding: inherit;">&#9670; ABOUT &#9670;</p></div>
+            <div class="TXTContainer BCG" style="height: 380px; background-image: url(Images/About/Background2.png); background-size: cover;">
+                <p class="LT White TXTN">EXPLORE DIFFERENT STAR SYSTEMS</p>
+                <p class="LT Gray TXTN">
+                    Explore a large variety of procedurally generated solar systems, discover what the lore of SpaceConquest can offer to you. Maybe you want more adventures? You can complete differents puzzles and quests scattered all over abandonned stations, ship wrecks, and the entire universe.
+                </p>
+                <p class="LT Gray TXTN" style="top: 3vw;">
+                    Seems boring? Don't worry the game is planned to have MANY ways to have fun exploring, to variety of gameplay, from the most serious ways to the most ridiculous ways! And you can play with your friends if you want!
+                </p>
+            </div>
+    
+            <div class="TXTContainer BCB" style="height: 380px; background-image: url(Images/About/Background3.png); background-size: cover;">
+                <div class="TRI TRIL" style="border-bottom: 2vw solid rgb(0,0,0)"></div>
+                <p class="RT White TXTN">FIGHT FOR YOUR FACTION</p>
+                <p class="RT Gray TXTN">
+                    Fight is a key feature in gameplay, that's why alot of the work has been made towards having the best fight experience you can possibly get on Roblox. You can fight for yourself, for your faction, for your friends, with players, bots and other factions!
+                </p>
+                <p class="RT Gray TXTN" style="top: 3vw;">
+                    Not your thing? Fight can be avoided if you really want peace, you always have the possibility to flee from ennemies without serious repercussions.
+                </p>
+            </div>
+    
+            <div class="TXTContainer BCG" style="height: 380px; background-image:url(Images/About/Background4.png); background-size: cover;">
+                <div class="TRI TRIR" style="border-bottom: 2vw solid rgb(30,30,35);"></div>
+                <p class="LT White TXTN">MINE VARIOUS ASTEROIDS</p>
+                <p class="LT Gray TXTN">
+                    If you want to farm, here is mining! But wait, it is not the kind of mining that you think, I tried to make the least boring mining you can find in space games. You will not "just mine and sell", it comes with many different ways to farm, from the most effective, to the funniest mining you could get in this kind of game!
+                </p>
+            </div>
+    
+            <footer id="app-footer" class="TXTContainer" style="background: linear-gradient(0deg, rgba(2, 2, 6, 1), rgba(11, 11, 20, 1));"></footer>
+        </body>
+    </div>
+
+     <!-- Head, Header and footer loader + gsap setup:-->
+    <script src="Scripts/gsap/gsap.min.js"></script>
+    <script src="Scripts/gsap/ScrollTrigger.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <!-- The page JS script:-->
+    <script>
+        ScrollTrigger.clearScrollMemory();
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.to("#AboutText",{opacity:1,duration:1,ease:"power1.in"})
+        });
+
+    </script>
+</html>

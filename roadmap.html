@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html>
+     <!--Head-->
+     <head id="app-head"></head>
+
+     <!--Header-->
+     <header id="app-header"></header>
+ 
+      <!-- Manually load style.css at very start to prevent flashbang on refresh:-->
+     <link rel="stylesheet" href="Scripts/style.css">
+
+    <!--Body-->
+    <div style="overflow: hidden;">
+        <body id="app-body" style="background-image: url(Images/Roadmap/Background.png); background-size: 100vw; background-repeat: repeat;">
+                <div style="padding: 15%;">
+                    <div id="RoadmapText" style="opacity: 0; text-align: center; font-size: 150px; font-weight: 700;">THE ROADMAP</div>
+                    <div id="DisclaimerText" style="opacity: 0; color: rgb(140,140,140); text-align: center; font-size: 18px;">disclaimer: the roadmap can change at anytime, expect changes in the future.</div>
+                </div>
+
+                <div id="Location">
+                </div>
+        </body>
+        
+    </div>
+    <footer id="app-footer" class="TXTContainer" style="background: linear-gradient(0deg, rgba(2, 2, 6, 1), rgba(11, 11, 20, 1));"></footer>
+
+     <!-- Head, Header and footer loader + gsap setup:-->
+    <script src="Scripts/gsap/gsap.min.js"></script>
+    <script src="Scripts/gsap/ScrollTrigger.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <!-- The page JS script:-->
+    <script>
+        // Roadmap Content
+
+        var RoadmapContent = new Map()
+        RoadmapContent.set("EXPLORING", {
+            ["Ship Movements"]:{        status:'Finished',  Update:"Key Element",           Desc:"Basic ships movement."},
+
+            ["Stations"]:{              status:'In work',   Update:"Key Element",           Desc:"Generated Stations."},
+
+            ["Gravity and Forces"]:{    status:'Pending',   Update:"Undefined",             Desc:"Implementation to forces and gravity."},
+
+            ["EVA"]:{                   status:'Planned',   Update:"Exploration Update",    Desc:"Functionning EVA (Extra Vehicular Activity) everywhere."},
+            ["Armors"]:{                status:'Planned',   Update:"Exploration Update",    Desc:"Armors."},
+            ["New bots"]:{              status:'Planned',   Update:"Exploration Update",    Desc:"Improved bot IA."},
+            ["Comet"]:{                 status:'Planned',   Update:"Exploration Update",    Desc:"New anomaly type."},
+            ["Player Stations"]:{       status:'Planned',   Update:"Undefined",             Desc:"Stations created by players."},
+            ["World Events"]:{          status:'Planned',   Update:"Undefined",             Desc:"Random events around the universe."},
+            ["Wormholes"]:{             status:'Planned',   Update:"Undefined",             Desc:"Wormholes to teleport you at random places."},
+
+            ["Planets Rework"]:{        status:'Unsure',    Update:"Explorable Planets",    Desc:"New planets."},
+            ["Explorable Planets"]:{    status:'Unsure',    Update:"Explorable Planets",    Desc:"Entirely explorable planets."},
+            ["Cities"]:{                status:'Unsure',    Update:"Explorable Planets",    Desc:"Cities on planets."},
+            ["Bunkers"]:{               status:'Unsure',    Update:"Explorable Planets",    Desc:"New quest with bunkers in terrain."},
+        });
+
+        RoadmapContent.set("FIGHTING", {
+            ["Targeting"]:{                     status:'Finished',  Update:"Key Element",       Desc:"Target other people."},
+            ["Fixed Turrets"]:{                 status:'Finished',  Update:"Key Element",       Desc:"Turrets."},
+            
+            ["Turrets"]:{                       status:'Pending',   Update:"Key Element",       Desc:"Add gimball turrets."},
+            ["Controlable Turrets"]:{           status:'Pending',   Update:"Undefined",         Desc:"Controlable turrets for multicrew."},
+
+            ["Interception"]:{                  status:'Planned',   Update:"Combat Update",     Desc:"Intercept people in quantum."},
+            ["Missiles"]:{                      status:'Planned',   Update:"Combat Update",     Desc:"New missile gameplay."},
+            ["Bounty"]:{                        status:'Planned',   Update:"Key Element",       Desc:"Bounties to criminal players."},
+            ["Guns"]:{                          status:'Planned',   Update:"Exploration Update",Desc:"FPS Guns."},
+            ["Fleet Carriers"]:{                status:'Planned',   Update:"Undefined",         Desc:"Fleet Carriers for factions."},
+            ["Guns Group"]:{                    status:'Planned',   Update:"Undefined",         Desc:"Changing guns mount."},
+            ["Factions"]:{                      status:'Planned',   Update:"Undefined",         Desc:"Different factions."},
+            ["PVE Encounter"]:{                 status:'Planned',   Update:"Undefined",         Desc:"Groups of bots."},
+
+            ["Shield Revamp"]:{                 status:'Unsure',    Update:"Combat Update",     Desc:"New visual for shields."},
+            ["Autodestruction and ejection"]:{  status:'Unsure',    Update:"Undefined",         Desc:"Ability to eject or autodestruct your ship if needed."},
+            ["Nations"]:{                       status:'Unsure',    Update:"Undefined",         Desc:"Different nations."},
+            ["Balistic Guns"]:{                 status:'Unsure',    Update:"Undefined",         Desc:"Solid projectiles to bypass shield."},
+            ["EMP"]:{                           status:'Unsure',    Update:"Undefined",         Desc:"Adds distortion damage. (Distortion Pulse)"},
+        });
+
+        RoadmapContent.set("MINING", {
+            ["Pyromining"]:{                status:'Planned',   Update:"Undefined", Desc:"Exploded asteroids rather than mining them."},
+            ["Missile Mining"]:{            status:'Planned',   Update:"Undefined", Desc:"Explode asteroids from the interior."},
+            ["Mining"]:{                    status:'Planned',   Update:"Key Element", Desc:"Ability to mine with ships."},
+            ["Hand Mining"]:{               status:'Planned',   Update:"Undefined", Desc:"Ability to mine with EVA."},
+            ["Anomalies"]:{                 status:'Planned',   Update:"Undefined", Desc:"More Anomalies related to mining."},
+
+            ["Carrier"]:{                   status:'Unsure',    Update:"Undefined", Desc:"Large quantities of asteroids populated by a specific faction."},
+            ["Drones"]:{                    status:'Unsure',    Update:"Undefined", Desc:"Small drones to help you a little for mining."},
+        });
+
+        RoadmapContent.set("OTHERS", {
+            ["Server hopping"]:{                    status:'Finished',  Update:"Key Element",   Desc:"Jumping between servers."},
+            ["Flight Demo"]:{                       status:'Finished',   Update:"Key Element",   Desc:"The first step."},
+
+            ["Tutorial"]:{                          status:'In work',   Update:"Undefined",     Desc:"The tutorial for the game."},
+            ["Replay"]:{                            status:'In work',   Update:"Undefined",     Desc:"A replay mode to create trailers."},
+
+            ["Quest System"]:{                      status:'Pending',   Update:"Key Element",   Desc:"Ability to do quests."},
+            ["Character Customization"]:{           status:'Pending',   Update:"Others",        Desc:"Character customization."},
+
+            ["Better Suspensions"]:{                status:'Planned',   Update:"Undefined",     Desc:"Make suspensions less buggy, modulable and low performance cost."},
+            ["Security reinforcement"]:{            status:'Planned',   Update:"Undefined",     Desc:"Add an anti-cheat."},
+            ["More Settings"]:{                     status:'Planned',   Update:"Others",        Desc:"Large variety of parameters to perfectionate gameplay style."},
+            ["Multicrew"]:{                         status:'Planned',   Update:"Key Element",   Desc:"Ability to control a ship with multiple players."},
+            ["VR Compability"]:{                    status:'Planned',   Update:"Others",        Desc:"Use of vr in game, with real implementations."},
+            ["Console and gamepad Compability"]:{   status:'Planned',   Update:"Others",        Desc:"Console players will be able to play."},
+            ["Quantum Stall"]:{                     status:'Planned',   Update:"Undefined",     Desc:"Random quantum stall depending on stability of warp."},
+            ["Ships overhaul remake."]:{            status:'Planned',   Update:"Others",        Desc:"Entire remake of all ships"},
+            ["Ships Interior"]:{                    status:'Planned',   Update:"Others",        Desc:"Ability to go inside ships."},
+            ["Transport Gameplay"]:{                status:'Planned',   Update:"Undefined",     Desc:"New gameplay with cargo and transport system."},
+            ["Warp gates"]:{                        status:'Planned',   Update:"Undefined",     Desc:"Warping with stability between large predefined distances."},
+            ["SVS"]:{                               status:'Planned',   Update:"Undefined",     Desc:"Ship voice system."},
+            ["IIASR"]:{                             status:'Planned',   Update:"Undefined",     Desc:"Integrated IA Sound Reconstitution (lore)."},
+
+            ["Cross Server Ships"]:{                status:'Unsure',    Update:"Undefined",      Desc:"(VERY UNSURE): Ability to see and interact with every ship of every servers, basically making a global server that can handle as many of ships as possible."},
+        });
+
+        // End of Roadmap Content
+
+        ScrollTrigger.clearScrollMemory();
+        document.addEventListener("DOMContentLoaded", (event) => {
+            function subdiv(title) {
+                var div4 = document.createElement("div");
+                div4.classList.add("RM-SS")
+            
+                var div5 = document.createElement("div");
+                div5.classList.add("RM-SSTitle")
+                div5.innerHTML=title
+                var div6 = document.createElement("img");
+                div6.classList.add("RM-SSArrow")
+                div6.src="Images/Roadmap/Arrow.png"
+
+                var div7 = document.createElement("div");
+                div7.style.overflow="hidden"
+                var div8 = document.createElement("div");
+                div8.classList.add("RM-SSContent")
+
+                var opened = false
+                var firstime = true
+
+                div5.addEventListener("mousedown", function(){
+                    opened=!opened
+                    if (opened) {
+                        if (firstime) {div8.style.marginTop=-div8.offsetHeight+"px"}
+                        gsap.to(div6,{rotation:-180,duration:.4})
+                        gsap.to(div8,{"margin-top":"0px",onUpdate: function() {ScrollTrigger.refresh()}})
+                    } else {
+                        gsap.to(div6,{rotation:-90,duration:.4})
+                        gsap.to(div8,{"margin-top":-div8.offsetHeight+"px",onUpdate: function() {ScrollTrigger.refresh()}})
+                    }
+                })
+
+                div4.appendChild(div5)
+                div4.appendChild(div7)
+                div5.appendChild(div6)
+                div7.appendChild(div8)
+
+                return {div4,div8}
+            }
+
+            for (const [key, value] of RoadmapContent.entries()) {
+                var div1 = document.createElement("div");
+                div1.classList.add("RM-Section")
+
+                var div2 = document.createElement("div");
+                div2.classList.add("RM-Title")
+                div2.innerHTML=key
+                var div3 = document.createElement("div");
+                div3.classList.add("RM-Content")
+               
+                document.getElementById("Location").appendChild(div1)
+                div1.appendChild(div2)
+                div1.appendChild(div3)
+
+                var SSOnWork = subdiv("On work")
+                var SSFinished = subdiv("Finished")
+
+                div3.appendChild(SSOnWork.div4)
+                div3.appendChild(SSFinished.div4)
+                
+                var Alls = {
+                    "Pending":{},
+                    "Finished":{},
+                    "Planned":{},
+                    "In work":{},
+                    "Unsure":{},
+                    "Ready":{}
+                    }
+
+                for(var Content in value) {
+                    var codiv1 = document.createElement("div");
+                    codiv1.classList.add("RM-SS-BoxMain") 
+                    
+                    Alls[value[Content].status][Content] = codiv1
+
+                    var BoxTitl = document.createElement("span")
+                    var BoxDesc = document.createElement("p")
+                    var BoxUpdt = document.createElement("span")
+                    var BoxStat = document.createElement("p")
+
+                    BoxTitl.innerHTML = Content
+                    BoxUpdt.innerHTML = " - "+value[Content].Update
+                    BoxStat.innerHTML = value[Content].status
+                    BoxDesc.innerHTML = value[Content].Desc
+                    
+                    BoxTitl.style.margin = 0
+                    BoxTitl.style.fontWeight = 700
+                    BoxTitl.style.width = "70%"
+                    BoxStat.style.width = "30%"
+                    BoxStat.style.textAlign = "right"
+                    BoxStat.style.margin = 0
+                    BoxDesc.style.width = "100%"
+                    BoxDesc.style.marginBottom = 0
+                    BoxDesc.style.fontWeight = 400
+
+                    BoxUpdt.style.fontStyle="oblique"
+                    BoxUpdt.style.color="rgb(170,170,170)"
+
+                    codiv1.appendChild(BoxTitl)
+                    codiv1.appendChild(BoxStat)
+                    codiv1.appendChild(BoxDesc)
+                    BoxTitl.appendChild(BoxUpdt)
+                }
+            
+                for (var Content2 in Alls["Ready"]) {
+                    SSOnWork.div8.appendChild(Alls["Ready"][Content2])
+                    Alls["Ready"][Content2].style.background = "rgb(23,59,23)"
+                }
+
+                for (var Content2 in Alls["In work"]) {
+                    SSOnWork.div8.appendChild(Alls["In work"][Content2])
+                    Alls["In work"][Content2].style.background = "linear-gradient(90deg, rgb(4, 4, 4), rgb(143,55,21))"
+                }
+
+                for (var Content2 in Alls["Pending"]) {
+                    SSOnWork.div8.appendChild(Alls["Pending"][Content2])
+                    Alls["Pending"][Content2].style.background = "linear-gradient(90deg, rgb(4, 4, 4), rgb(27,22,99))"
+                }
+
+                for (var Content2 in Alls["Planned"]) {
+                    SSOnWork.div8.appendChild(Alls["Planned"][Content2])
+                }
+
+                for (var Content2 in Alls["Unsure"]) {
+                    SSOnWork.div8.appendChild(Alls["Unsure"][Content2])
+                    Alls["Unsure"][Content2].style.background = "linear-gradient(90deg, rgb(4, 4, 4), rgb(60,20,18))"
+                }
+
+                for (var Content2 in Alls["Finished"]) {
+                    SSFinished.div8.appendChild(Alls["Finished"][Content2])
+                    Alls["Finished"][Content2].style.background = "linear-gradient(90deg, rgb(4, 4, 4), rgb(1,40,18))"
+                }
+            }
+            
+            gsap.to("#RoadmapText",{opacity:1,duration:2,ease:"power1.in"})
+            gsap.to("#DisclaimerText",{opacity:1,duration:4,ease:"power1.in"})
+           
+            gsap.utils.toArray(".RM-Section").forEach(function(elem) {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "0% 75%",
+                    end: "100% 25%",
+                    toggleActions:"play reverse play reverse",
+                },
+                ease: "power4.out",
+                duration:1,
+                opacity: 1,
+            });
+         }); 
+
+
+        });
+    </script>
+</html>

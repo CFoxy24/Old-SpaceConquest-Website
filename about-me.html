@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+
+
+<html>
+    <!--Header-->
+    <header id="app-header"></header>
+
+     <!-- Manually load style.css at very start to prevent flashbang on refresh:-->
+    <link rel="stylesheet" href="Scripts/style.css">
+    
+    <!--Body-->
+    <body id="app-body">
+        <div id="HomeBody">
+            
+            <!--Footer-->
+            <footer id="app-footer" class="TXTContainer" style="background: linear-gradient(0deg, rgba(2, 2, 6, 1), rgba(11, 11, 20, 1));"></footer>
+        </div>
+    </body>
+
+     <!-- Head, Header and footer loader + gsap setup:-->
+    <script src="Scripts/gsap/gsap.min.js"></script>
+    <script src="Scripts/gsap/ScrollTrigger.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <!-- The page JS script:-->
+    <script>
+        ScrollTrigger.clearScrollMemory();
+        document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger)
+
+        var Stat1 = 18
+        var Stat2 = 0
+        var Stat3 = 0
+        var Stat4 = 0
+        var Stat5 = 0
+        var Stat6 = 0
+       
+        const apiUrl = 'https://games.roblox.com/v1/games?universeIds=5537507650';  
+        async function Update() {  
+            var oldstat5 = Stat5 
+            
+            const response = await fetch('https://space-conquest.net//proxyurl?url=' + apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Error while requesting data.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                Stat5 = data.data[0].visits;
+                Stat6 = data.data[0].playing;
+            })
+            .catch(error => {
+                console.log("Error while loading game data: " + error)
+            });
+
+            tlProject = gsap.timeline({
+            scrollTrigger: {
+            trigger: "#SFContainer",
+            start: "15%, 80%", 
+            end: "75%, 10%",
+            toggleActions: "play reverse play reverse"
+        },
+        defaults: {duration: 1.4,top: "0", ease: "power4.out",opacity: 1}
+        });
+        tlProject
+            .to("#Stat1",{},0).to(self.Stat1Val, {innerText:Stat1, duration: 4,snap:"innerText"},0)
+            .to("#Stat2",{},.2).to(self.Stat2Val, {innerText:Stat2, duration: 4,snap:"innerText"},0)
+            .to("#Stat3",{},.4).to(self.Stat3Val, {innerText:Stat3, duration: 4,snap:"innerText"},0)
+            .to("#Stat4",{},.6).to(self.Stat4Val, {innerText:Stat4, duration: 4,snap:"innerText"},0)
+            .to("#Stat5",{},.8).to(self.Stat5Val, {innerText:Stat5, duration: 4,snap:"innerText"},0)
+            .to("#Stat6",{},1).to(self.Stat6Val, {innerText:Stat6, duration: 4,snap:"innerText"},0)
+        }
+        Update()
+       
+        tlProject2 = gsap.timeline({
+            scrollTrigger: {
+            trigger: "#LLContainer",
+            start: "15%, 80%", 
+            end: "75%, 10%",
+            toggleActions: "play reverse play reverse",
+        },
+        defaults: {duration: 1,left:0, stagger:".1", ease: "power4.out",opacity: 1}
+        });tlProject2.to(".LinkImage",{},0)
+        gsap.to("#Banner", {opacity: 1, duration: 1, ease: "power4.out"});
+        gsap.to("#Banner", {
+            scrollTrigger: {
+                trigger: "#Banner",
+                start: "80% center",
+                end: "bottom center",  
+                scrub: .5,
+            },
+            immediateRender: false,
+            filter: "blur(10px)",
+        });
+        gsap.to("#Logo", {x: -200,opacity: 1, duration: 4, ease: "power4"});
+        gsap.to("#Background1", {
+                scrollTrigger: {
+                    trigger: "#Background1",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 4,
+                },
+                 
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background2", {
+                scrollTrigger: {
+                    trigger: "#Background2",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 2,
+                },
+                x: -100,
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background3", {
+                scrollTrigger: {
+                    trigger: "#Background3",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 2,
+                },
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background4", {
+                scrollTrigger: {
+                    trigger: "#Background4",
+                    start: "20% 50%",
+                    end: "60% 50%",
+                    scrub: 2,
+                },
+                ease: "sine",
+                background: "linear-gradient(185deg, rgba(9, 9, 12, 1) 0%, rgba(9, 9, 12, 1) 30%, rgba(25, 70, 110,1) 100%)"
+            });     
+        gsap.utils.toArray(".BTN").forEach(function(elem) {
+            let tmpp =  gsap.to(elem,{duration:.2,"background-color":"rgba(50,50,70,1)", paused:true, ease:"power2"});
+           
+            elem.addEventListener("mouseenter", ()=>{
+                tmpp.play()
+            });
+            elem.addEventListener("mouseleave", ()=>{
+                tmpp.reverse()
+            });
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "0% 80%",
+                    end: "100% 20%",
+                    toggleActions:"play reverse play reverse",
+                },
+                ease: "power1.inout",
+                duration:.7,
+                opacity: 1,
+                x:"100px"
+            });
+         }); 
+        });
+
+    </script>
+</html>

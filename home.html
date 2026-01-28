@@ -1,0 +1,213 @@
+<html>
+    <!--Header-->
+    <header id="app-header"></header>
+
+     <!-- Manually load style.css at very start to prevent flashbang on refresh:-->
+    <link rel="stylesheet" href="Scripts/style.css">
+    
+    <!--Body-->
+    <body id="app-body">
+        <img class="NoPointer" id="Banner" src="Images/Home/HomeBanner.png">
+        <img class="NoPointer" id="Logo" src="Images/Global/SpaceConquestFull.png">
+
+        <div id="HomeBody">
+            <div id="SFStarter" class="TXTContainer BCB" style="height: 380px; background: linear-gradient(180deg, rgba(15, 15, 40, 1) 0%, rgba(0, 0, 0, 1) 100%);">
+                <img class="NoPointer" src="Images/Home/Backgrounds/Background1.png" id="Background0">
+                
+                <div id="SFContainer">
+                    <div id="Stat1" class="SFDiv"><p id="Stat1Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Unique Ships</p></div>
+                    <div id="Stat2" class="SFDiv"><p id="Stat2Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Explorable Solar Systems</p></div>
+                    <div id="Stat3" class="SFDiv"><p id="Stat3Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Planets</p></div>
+                    <div id="Stat4" class="SFDiv"><p id="Stat4Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Lasers fired</p></div>
+                    <div id="Stat5" class="SFDiv"><p id="Stat5Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Visits</p></div>
+                    <div id="Stat6" class="SFDiv"><p id="Stat6Val" class="SFT SFVal Test">0</p><p class="SFT SFTXT">Players Online</p></div>
+                </div>
+            </div>
+
+            <div class="TXTContainer BCB" style="height: 600px; background: linear-gradient(180deg, rgba(9, 9, 12, 1) 0%, rgba(0, 0, 0, 1) 100%);">
+                <img class="NoPointer" src="Images/Home/Backgrounds/Background2.png" id="Background1">
+                <div class="TRI TRIR"></div>
+                <p class="LT White TXTN">EXPLORE, FIGHT, MINE</p>
+                <p class="LT Gray TXTN">SpaceConquest is a very ambitious space MMORPG entirely made on Roblox. This massive project started in 2021, and since then I always wanted to have the biggest game of this style</p>
+                <p class="RT White TXTN " >WHY ROBLOX ?</p>
+                <p class="RT Gray TXTN" style="height: 160px;">First of all Roblox is a very accesible platform, you will be able to play SpaceConquest without installing anything (apart from Roblox), second of all, in Roblox you don't have a lot of "big" game or even space games !</p>
+                <div style="margin-left: auto; margin-right: auto; width: fit-content;"><a class="BTN" href="about">More</a></div>
+            </div>
+
+            <div class="TXTContainer BCG" style="height: 300px; background-image: url(Images/Home/Grid.png); background-repeat: repeat; background-size: 150px; background-color: rgb(13, 16, 43);">
+                <img class="NoPointer" src="Images/Home/Backgrounds/Background3.png" id="Background2">
+                <p class="LT White TXTN">SPACECONQUEST ROADMAP</p>
+                <p style="margin-bottom: 60px;" class="LT Gray TXTN">SpaceConquest is a very ambitious project, so we decided to create a roadmap dedicated to the game.</p>
+                <a class="BTN" href="roadmap">Discover</a>
+            </div>
+
+            <div class="TXTContainer BCB" id="Background4" style="height: 600px; background: linear-gradient(185deg, rgba(9, 9, 12, 1) 0%, rgba(9, 9, 12, 1) 30%, rgba(9, 9, 12,1) 100%);">
+                <img class="NoPointer" src="Images/Home/Backgrounds/Background4.png" id="Background3">
+                <div class="TRI TRIR"></div>
+                <div class="TRI TRIL"></div>
+                <div style="margin-left: auto; margin-right: 0; float: right;"><a class="BTN" href="ships">Learn</a></div>
+                <p class="LT White TXTN" style="width: 50%;">SHIPS</p>
+                <p class="LT Gray TXTN" style="width: 50%;">Explore sa marche? every aspect of every SpaceConquest's Ships</p>
+            </div>
+
+            <div class="TXTContainer BCG" style="height: 380px;">
+                <div class="TRI TRIR" style="border-bottom: 2vw solid rgb(30,30,35);"></div>
+                <p class="LT White TXTN">JOIN THE COMMUNITY</p>
+
+                <div id="LLContainer">
+                     <a style="display: contents;" href="https://discord.gg/aZeXeeCkys"><img class="LinkImage" src="Images/Global/Logos/DiscordLogo.png" style="height: 75%;align-self: center;"></a>
+                     <a style="display: contents;" href="https://www.roblox.com/games/16018926719/SpaceConquest"><img class="LinkImage" src="Images/Global/Logos/RobloxLogo.png" style="height: 100%"></a>
+                     <a style="display: contents;" href="https://www.youtube.com/@cfoxy24"><img class="LinkImage" src="Images/Global/Logos/YoutubeLogo.png" style="height: 100%"></a>
+                </div>
+            </div>
+
+             <!--Footer-->
+             <footer id="app-footer" class="TXTContainer" style="background: linear-gradient(0deg, rgba(2, 2, 6, 1), rgba(11, 11, 20, 1));"></footer>
+        </div>
+    </body>
+
+     <!-- Head, Header and footer loader + gsap setup:-->
+    <script src="Scripts/gsap/gsap.min.js"></script>
+    <script src="Scripts/gsap/ScrollTrigger.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <!-- The page JS script:-->
+    <script>
+        ScrollTrigger.clearScrollMemory();
+        document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger)
+
+        var Stat1 = 18
+        var Stat2 = 0
+        var Stat3 = 0
+        var Stat4 = 0
+        var Stat5 = 0
+        var Stat6 = 0
+       
+        const apiUrl = 'https://games.roblox.com/v1/games?universeIds=5537507650';  
+        async function Update() {  
+            var oldstat5 = Stat5 
+            
+            const response = await fetch('https://space-conquest.net//proxyurl?url=' + apiUrl)
+            .then(response => {
+                if (!response.ok) { 
+                throw new Error('Error while requesting data.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                Stat5 = data.data[0].visits;
+                Stat6 = data.data[0].playing;
+            })
+            .catch(error => {
+                console.log("Error while loading game data: " + error)
+            });
+
+            tlProject = gsap.timeline({
+            scrollTrigger: {
+            trigger: "#SFContainer",
+            start: "15%, 80%", 
+            end: "75%, 10%",
+            toggleActions: "play reverse play reverse"
+        },
+        defaults: {duration: 1.4,top: "0", ease: "power4.out",opacity: 1}
+        });
+        tlProject
+            .to("#Stat1",{},0).to(self.Stat1Val, {innerText:Stat1, duration: 4,snap:"innerText"},0)
+            .to("#Stat2",{},.2).to(self.Stat2Val, {innerText:Stat2, duration: 4,snap:"innerText"},0)
+            .to("#Stat3",{},.4).to(self.Stat3Val, {innerText:Stat3, duration: 4,snap:"innerText"},0)
+            .to("#Stat4",{},.6).to(self.Stat4Val, {innerText:Stat4, duration: 4,snap:"innerText"},0)
+            .to("#Stat5",{},.8).to(self.Stat5Val, {innerText:Stat5, duration: 4,snap:"innerText"},0)
+            .to("#Stat6",{},1).to(self.Stat6Val, {innerText:Stat6, duration: 4,snap:"innerText"},0)
+        }
+        Update()
+       
+        tlProject2 = gsap.timeline({
+            scrollTrigger: {
+            trigger: "#LLContainer",
+            start: "15%, 80%", 
+            end: "75%, 10%",
+            toggleActions: "play reverse play reverse",
+        },
+        defaults: {duration: 1,left:0, stagger:".1", ease: "power4.out",opacity: 1}
+        });tlProject2.to(".LinkImage",{},0)
+        gsap.to("#Banner", {opacity: 1, duration: 1, ease: "power4.out"});
+        gsap.to("#Banner", {
+            scrollTrigger: {
+                trigger: "#Banner",
+                start: "80% center",
+                end: "bottom center",  
+                scrub: .5,
+            },
+            immediateRender: false,
+            filter: "blur(10px)",
+        });
+        gsap.to("#Logo", {x: -200,opacity: 1, duration: 4, ease: "power4"});
+        gsap.to("#Background1", {
+                scrollTrigger: {
+                    trigger: "#Background1",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 4,
+                },
+                 
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background2", {
+                scrollTrigger: {
+                    trigger: "#Background2",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 2,
+                },
+                x: -100,
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background3", {
+                scrollTrigger: {
+                    trigger: "#Background3",
+                    start: "0% 70%",
+                    end: "100% 70%",
+                    scrub: 2,
+                },
+                ease: "power1.inout",
+                opacity: 1
+            });
+        gsap.to("#Background4", {
+                scrollTrigger: {
+                    trigger: "#Background4",
+                    start: "20% 50%",
+                    end: "60% 50%",
+                    scrub: 2,
+                },
+                ease: "sine",
+                background: "linear-gradient(185deg, rgba(9, 9, 12, 1) 0%, rgba(9, 9, 12, 1) 30%, rgba(25, 70, 110,1) 100%)"
+            });     
+        gsap.utils.toArray(".BTN").forEach(function(elem) {
+            let tmpp =  gsap.to(elem,{duration:.2,"background-color":"rgba(50,50,70,1)", paused:true, ease:"power2"});
+           
+            elem.addEventListener("mouseenter", ()=>{
+                tmpp.play()
+            });
+            elem.addEventListener("mouseleave", ()=>{
+                tmpp.reverse()
+            });
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "0% 80%",
+                    end: "100% 20%",
+                    toggleActions:"play reverse play reverse",
+                },
+                ease: "power1.inout",
+                duration:.7,
+                opacity: 1,
+                x:"100px"
+            });
+         }); 
+        });
+
+    </script>
+</html>
